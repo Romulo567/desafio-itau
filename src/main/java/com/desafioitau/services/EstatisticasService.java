@@ -1,4 +1,4 @@
-package com.desafioitau.business.services;
+package com.desafioitau.services;
 
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
