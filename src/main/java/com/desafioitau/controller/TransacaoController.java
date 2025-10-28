@@ -29,6 +29,7 @@ public class TransacaoController {
 	
 	@DeleteMapping
 	public ResponseEntity<Void> deletarTransacao(){
+		
 		transacaoService.limparTransacoes();
 		return ResponseEntity.ok().build();
 	}
