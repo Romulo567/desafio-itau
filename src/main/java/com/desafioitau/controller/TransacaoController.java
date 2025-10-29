@@ -13,6 +13,7 @@ import com.desafioitau.services.TransacaoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -37,6 +38,12 @@ public class TransacaoController {
 	}
 	
 	@DeleteMapping
+	@Operation(description = "Recurso responsável por deletar transações")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "200", description = "Transação deletadas com sucesso"),
+			@ApiResponse(responseCode = "400", description = "Erro de requisição"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+	})
 	public ResponseEntity<Void> deletarTransacao(){
 		
 		transacaoService.limparTransacoes();
