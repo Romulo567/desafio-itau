@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desafioitau.controller.dtos.TransacaoRequestDTO;
 import com.desafioitau.services.TransacaoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -21,6 +23,13 @@ public class TransacaoController {
 	private final TransacaoService transacaoService;
 	
 	@PostMapping
+	@Operation(description = "Recurso responsável por adicionar transações")
+	@ApiResponses(value = {
+			@ApiResponse(responseCode = "201", description = "Transação gravada com sucesso"),
+			@ApiResponse(responseCode = "422", description = "Campos não atendem os requisitos da transação"),
+			@ApiResponse(responseCode = "400", description = "Erro de requisição"),
+			@ApiResponse(responseCode = "500", description = "Erro interno do servidor")
+	})
 	public ResponseEntity<Void> adicionarTransacao(@RequestBody TransacaoRequestDTO dto){
 		
 		transacaoService.criarTransacoes(dto);
