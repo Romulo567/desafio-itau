@@ -1,4 +1,4 @@
-package com.desafioitau.exceptions;
+package com.desafioitau.api_desafio_itau.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

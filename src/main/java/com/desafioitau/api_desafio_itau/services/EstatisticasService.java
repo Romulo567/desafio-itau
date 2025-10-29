@@ -1,12 +1,12 @@
-package com.desafioitau.services;
+package com.desafioitau.api_desafio_itau.services;
 
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.desafioitau.controller.dtos.EstatisticasResponseDTO;
-import com.desafioitau.controller.dtos.TransacaoRequestDTO;
+import com.desafioitau.api_desafio_itau.controller.dtos.EstatisticasResponseDTO;
+import com.desafioitau.api_desafio_itau.controller.dtos.TransacaoRequestDTO;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

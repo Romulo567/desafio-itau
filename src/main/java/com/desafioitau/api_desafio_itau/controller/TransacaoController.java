@@ -1,4 +1,4 @@
-package com.desafioitau.controller;
+package com.desafioitau.api_desafio_itau.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.desafioitau.controller.dtos.TransacaoRequestDTO;
-import com.desafioitau.services.TransacaoService;
+import com.desafioitau.api_desafio_itau.controller.dtos.TransacaoRequestDTO;
+import com.desafioitau.api_desafio_itau.services.TransacaoService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

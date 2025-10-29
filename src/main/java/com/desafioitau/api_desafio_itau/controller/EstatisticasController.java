@@ -1,4 +1,4 @@
-package com.desafioitau.controller;
+package com.desafioitau.api_desafio_itau.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.desafioitau.controller.dtos.EstatisticasResponseDTO;
-import com.desafioitau.services.EstatisticasService;
+import com.desafioitau.api_desafio_itau.controller.dtos.EstatisticasResponseDTO;
+import com.desafioitau.api_desafio_itau.services.EstatisticasService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;

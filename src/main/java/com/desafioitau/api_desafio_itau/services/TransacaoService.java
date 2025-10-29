@@ -1,4 +1,4 @@
-package com.desafioitau.services;
+package com.desafioitau.api_desafio_itau.services;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.desafioitau.controller.dtos.TransacaoRequestDTO;
-import com.desafioitau.exceptions.UnprocessableEntity;
+import com.desafioitau.api_desafio_itau.controller.dtos.TransacaoRequestDTO;
+import com.desafioitau.api_desafio_itau.exceptions.UnprocessableEntity;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
