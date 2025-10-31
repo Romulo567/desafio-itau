@@ -38,7 +38,7 @@ public class TransacaoController {
 	}
 	
 	@DeleteMapping
-	@Operation(description = "Recurso responsável por deletar transações")
+	@Operation(summary = "Deletar uma transação", description = "Recurso responsável por deletar transações")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Transação deletadas com sucesso"),
 			@ApiResponse(responseCode = "400", description = "Erro de requisição"),
