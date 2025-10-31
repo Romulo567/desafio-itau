@@ -48,4 +48,18 @@ public class EstatisticasServiceTest {
 		verify(transacaoService, times(1)).buscarTransacoes(60);
 		Assertions.assertThat(resultado).usingRecursiveComparison().isEqualTo(estatisticas);
 	}
+	
+	@Test
+	void calcularEstatisticasQuandoListaVazia() {
+		
+		EstatisticasResponseDTO estatisticaEsperado = new EstatisticasResponseDTO(0L, 0.0, 0.0, 0.0, 0.0);
+		
+		when(transacaoService.buscarTransacoes(60))
+		.thenReturn(Collections.emptyList());
+		
+		EstatisticasResponseDTO resultado = estatisticasService.calcularEstatisticasTransacoes(60);
+		
+		verify(transacaoService, times(1)).buscarTransacoes(60);
+		Assertions.assertThat(resultado).usingRecursiveComparison().isEqualTo(estatisticaEsperado);
+	}
 }
