@@ -12,8 +12,10 @@ import com.desafioitau.api_desafio_itau.services.EstatisticasService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
+@Tag(name = "Estatisticas", description = "Contém método para buscar estatisticas de transações")
 @RestController
 @RequestMapping("api/v1/estatistica")
 @RequiredArgsConstructor
@@ -22,7 +24,7 @@ public class EstatisticasController {
 	private final EstatisticasService estatisticasService;
 	
 	@GetMapping
-	@Operation(description = "Recurso responsável por buscar estatisticas de transações")
+	@Operation(summary = "Buscar Estatisticas", description = "Recurso responsável por buscar estatisticas de transações")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "200", description = "Busca efetuada com sucesso"),
 			@ApiResponse(responseCode = "400", description = "Erro na busca de estatisticas de transações"),
