@@ -24,7 +24,7 @@ public class TransacaoController {
 	private final TransacaoService transacaoService;
 	
 	@PostMapping
-	@Operation(description = "Recurso responsável por adicionar transações")
+	@Operation(summary = "Fazer nova transação", description = "Recurso responsável por adicionar transações")
 	@ApiResponses(value = {
 			@ApiResponse(responseCode = "201", description = "Transação gravada com sucesso"),
 			@ApiResponse(responseCode = "422", description = "Campos não atendem os requisitos da transação"),
