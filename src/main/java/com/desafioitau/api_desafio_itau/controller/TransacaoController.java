@@ -14,8 +14,10 @@ import com.desafioitau.api_desafio_itau.services.TransacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 
+@Tag(name = "Transações", description = "Contém operações relativas ao recurso de uma transação")
 @RestController
 @RequestMapping("api/v1/transacao")
 @RequiredArgsConstructor
