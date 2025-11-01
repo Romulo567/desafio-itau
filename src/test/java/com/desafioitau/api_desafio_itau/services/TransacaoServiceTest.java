@@ -1,6 +1,8 @@
 package com.desafioitau.api_desafio_itau.services;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.OffsetDateTime;
@@ -14,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.desafioitau.api_desafio_itau.controller.dtos.EstatisticasResponseDTO;
 import com.desafioitau.api_desafio_itau.controller.dtos.TransacaoRequestDTO;
+import com.desafioitau.api_desafio_itau.exceptions.UnprocessableEntity;
 
 @ExtendWith(MockitoExtension.class)
 public class TransacaoServiceTest {
@@ -38,5 +41,13 @@ public class TransacaoServiceTest {
 		List<TransacaoRequestDTO> transacoes = transacaoService.buscarTransacoes(5000);
 		
 		assertTrue(transacoes.contains(transacao));
+	}
+	
+	@Test
+	void deveLancaExcecaoCasoValorSejaNegativo() {
+		UnprocessableEntity exception = assertThrows(UnprocessableEntity.class,
+				() -> transacaoService.criarTransacoes(new TransacaoRequestDTO(-10.0, OffsetDateTime.now())));
+		
+		assertEquals("Valor não pode ser menor que 0", exception.getMessage());
 	}
 }
