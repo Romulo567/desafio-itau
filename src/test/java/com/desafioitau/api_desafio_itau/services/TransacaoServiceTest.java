@@ -50,4 +50,12 @@ public class TransacaoServiceTest {
 		
 		assertEquals("Valor não pode ser menor que 0", exception.getMessage());
 	}
+	
+	@Test
+	void deveLancaExcecaoCasoDataOuHoraMaiorQueAtual() {
+		UnprocessableEntity exception = assertThrows(UnprocessableEntity.class,
+				() -> transacaoService.criarTransacoes(new TransacaoRequestDTO(10.0, OffsetDateTime.now().plusDays(1))));
+		
+		assertEquals("Data e hora maiores que a data e hora atual", exception.getMessage());
+	}
 }
