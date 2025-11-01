@@ -2,6 +2,7 @@ package com.desafioitau.api_desafio_itau.services;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -66,5 +67,19 @@ public class TransacaoServiceTest {
 		List<TransacaoRequestDTO> transacoes = transacaoService.buscarTransacoes(5000);
 		
 		assertTrue(transacoes.isEmpty());
+	}
+	
+	@Test
+	void deveBuscarTransacaoDentroDoIntervalo() {
+		
+		TransacaoRequestDTO dto = new TransacaoRequestDTO(10.0, OffsetDateTime.now().minusHours(1));
+		
+		transacaoService.criarTransacoes(transacao);
+		transacaoService.criarTransacoes(dto);
+		
+		List<TransacaoRequestDTO> transacoes = transacaoService.buscarTransacoes(60);
+		
+		assertTrue(transacoes.contains(transacao));
+		assertFalse(transacoes.contains(dto));
 	}
 }
