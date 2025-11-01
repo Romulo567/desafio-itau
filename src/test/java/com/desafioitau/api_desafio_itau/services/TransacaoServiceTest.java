@@ -58,4 +58,13 @@ public class TransacaoServiceTest {
 		
 		assertEquals("Data e hora maiores que a data e hora atual", exception.getMessage());
 	}
+	
+	@Test
+	void deveLimparTransacaoComSucesso() {
+		transacaoService.limparTransacoes();
+		
+		List<TransacaoRequestDTO> transacoes = transacaoService.buscarTransacoes(5000);
+		
+		assertTrue(transacoes.isEmpty());
+	}
 }
