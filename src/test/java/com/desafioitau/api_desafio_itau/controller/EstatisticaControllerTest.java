@@ -54,4 +54,13 @@ public class EstatisticaControllerTest {
 			    .andExpect(jsonPath("$.min").value(estatisticas.min())) 
 			    .andExpect(jsonPath("$.max").value(estatisticas.max()));
 	}
+	
+	@Test
+	void deveGerarErro400AoBuscarEstatisticasComParamentroInvalido() throws Exception {
+		
+		mockMvc.perform(get("/api/v1/estatistica")
+				.param("intervaloBusca", "texto-invalido")
+				.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isBadRequest());
+	}
 }
