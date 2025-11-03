@@ -79,4 +79,14 @@ public class TransacaoControllerTest {
 		mockMvc.perform(delete("/api/v1/transacao"))
 				.andExpect(status().isOk());	
 	}
+	
+	@Test
+	void deveGerarExcecaoQuandoJsonForInvalido() throws Exception {
+		
+		String jsonInvalido = "{\"valor\": \"vinte\", \"dataHora\": \"2025-11-03T10:30:00-04:00\"}";
+		mockMvc.perform(post("/api/v1/transacao")
+				.content(jsonInvalido)
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isBadRequest());
+	}
 }
