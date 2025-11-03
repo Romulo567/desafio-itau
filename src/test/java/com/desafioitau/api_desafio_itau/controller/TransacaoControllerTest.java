@@ -1,17 +1,27 @@
 package com.desafioitau.api_desafio_itau.controller;
 
+import static org.mockito.Mockito.doNothing;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.desafioitau.api_desafio_itau.controller.dtos.TransacaoRequestDTO;
 import com.desafioitau.api_desafio_itau.services.TransacaoService;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 @ExtendWith(MockitoExtension.class)
 public class TransacaoControllerTest {
@@ -26,9 +36,24 @@ public class TransacaoControllerTest {
 	
 	MockMvc mockMvc;
 	
+	@Autowired
+	final ObjectMapper objectMapper = new ObjectMapper();
+	
 	@BeforeEach
 	void setup() {
+		objectMapper.registerModule(new JavaTimeModule());
 		mockMvc = MockMvcBuilders.standaloneSetup(transacaoController).build();
-		transacao = new TransacaoRequestDTO(20.0, OffsetDateTime.now());
+		transacao = new TransacaoRequestDTO(20.0, OffsetDateTime.of(2025, 11, 03, 10, 30, 0, 0, ZoneOffset.UTC));
+	}
+	
+	@Test
+	void deveAdicionarTransacaoComSucesso() throws Exception{
+		
+		doNothing().when(transacaoService).criarTransacoes(transacao);
+		
+		mockMvc.perform(post("/api/v1/transacao")
+				.content(objectMapper.writeValueAsString(transacao))
+				.contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isCreated());	
 	}
 }
