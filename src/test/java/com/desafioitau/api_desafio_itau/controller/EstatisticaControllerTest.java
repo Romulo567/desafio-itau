@@ -48,6 +48,10 @@ public class EstatisticaControllerTest {
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-				.andExpect(jsonPath("$.count").value(estatisticas.count()));
+				.andExpect(jsonPath("$.count").value(estatisticas.count()))
+				.andExpect(jsonPath("$.sum").value(estatisticas.sum()))
+			    .andExpect(jsonPath("$.avg").value(estatisticas.avg())) 
+			    .andExpect(jsonPath("$.min").value(estatisticas.min())) 
+			    .andExpect(jsonPath("$.max").value(estatisticas.max()));
 	}
 }
