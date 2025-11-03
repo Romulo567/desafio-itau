@@ -2,6 +2,7 @@ package com.desafioitau.api_desafio_itau.controller;
 
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -22,7 +23,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.desafioitau.api_desafio_itau.controller.dtos.TransacaoRequestDTO;
 import com.desafioitau.api_desafio_itau.exceptions.UnprocessableEntity;
 import com.desafioitau.api_desafio_itau.services.TransacaoService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
@@ -69,5 +69,14 @@ public class TransacaoControllerTest {
 				.content(objectMapper.writeValueAsString(transacao))
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().is4xxClientError());	
+	}
+	
+	@Test
+	void deveDeletarTransacaoComSucesso() throws Exception {
+		
+		doNothing().when(transacaoService).limparTransacoes();
+		
+		mockMvc.perform(delete("/api/v1/transacao"))
+				.andExpect(status().isOk());	
 	}
 }
