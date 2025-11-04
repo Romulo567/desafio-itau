@@ -43,7 +43,7 @@ public class EstatisticaControllerTest {
 		
 		when(estatisticasService.calcularEstatisticasTransacoes(60)).thenReturn(estatisticas);
 		
-		mockMvc.perform(get("/api/v1/estatistica")
+		mockMvc.perform(get("/estatistica")
 				.param("intervaloBusca", "60")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
@@ -58,7 +58,7 @@ public class EstatisticaControllerTest {
 	@Test
 	void deveGerarErro400AoBuscarEstatisticasComParamentroInvalido() throws Exception {
 		
-		mockMvc.perform(get("/api/v1/estatistica")
+		mockMvc.perform(get("/estatistica")
 				.param("intervaloBusca", "texto-invalido")
 				.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());

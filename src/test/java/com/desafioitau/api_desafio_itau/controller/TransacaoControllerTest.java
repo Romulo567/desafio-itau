@@ -54,7 +54,7 @@ public class TransacaoControllerTest {
 		
 		doNothing().when(transacaoService).criarTransacoes(transacao);
 		
-		mockMvc.perform(post("/api/v1/transacao")
+		mockMvc.perform(post("/transacao")
 				.content(objectMapper.writeValueAsString(transacao))
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isCreated());	
@@ -65,7 +65,7 @@ public class TransacaoControllerTest {
 		
 		doThrow(new UnprocessableEntity("Erro de requisição")).when(transacaoService).criarTransacoes(transacao);
 		
-		mockMvc.perform(post("/api/v1/transacao")
+		mockMvc.perform(post("/transacao")
 				.content(objectMapper.writeValueAsString(transacao))
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().is4xxClientError());	
@@ -76,7 +76,7 @@ public class TransacaoControllerTest {
 		
 		doNothing().when(transacaoService).limparTransacoes();
 		
-		mockMvc.perform(delete("/api/v1/transacao"))
+		mockMvc.perform(delete("/transacao"))
 				.andExpect(status().isOk());	
 	}
 	
@@ -84,7 +84,7 @@ public class TransacaoControllerTest {
 	void deveGerarExcecaoQuandoJsonForInvalido() throws Exception {
 		
 		String jsonInvalido = "{\"valor\": \"vinte\", \"dataHora\": \"2025-11-03T10:30:00-04:00\"}";
-		mockMvc.perform(post("/api/v1/transacao")
+		mockMvc.perform(post("/transacao")
 				.content(jsonInvalido)
 				.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());

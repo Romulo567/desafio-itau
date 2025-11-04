@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 
 @Tag(name = "Transações", description = "Contém operações relativas ao recurso de uma transação")
 @RestController
-@RequestMapping("api/v1/transacao")
+@RequestMapping("transacao")
 @RequiredArgsConstructor
 public class TransacaoController {
 

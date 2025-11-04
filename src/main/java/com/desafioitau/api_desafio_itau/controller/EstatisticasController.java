@@ -17,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 
 @Tag(name = "Estatisticas", description = "Contém método para buscar estatisticas de transações")
 @RestController
-@RequestMapping("api/v1/estatistica")
+@RequestMapping("estatistica")
 @RequiredArgsConstructor
 public class EstatisticasController {
 
